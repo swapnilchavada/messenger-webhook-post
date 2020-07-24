@@ -75,7 +75,7 @@ def send_message_to_recipient(message_text, recipient_id, page_id):
       'text': message_text,
     },
   }
-  r = requests.post(SEND_API_URL%PATS[page_id], data=json.dumps(message), headers=HEADERS)
+  r = requests.post(SEND_API_URL%PATs[page_id], data=json.dumps(message), headers=HEADERS)
   if r.status_code != 200:
     print('== ERROR====')
     print(SEND_API_URL)
