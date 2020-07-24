@@ -8,11 +8,13 @@ WEBHOOK_VERIFY_TOKEN = 'test_faq_token'
 PAGE_ACCESS_TOKEN = 'EAAeeVSYcYQYBAHng9dsVAiRdvy1kKttTvWFkcmoU2fwUr44vnJXVQJfXzuZCL8FAUM9IqZCqlZBgaWMbRw6JQ09xlF9s130Syzt1trfbZCC1jxbM4IHtPqxVXRg6DB11rsDheteFCtLuXHqJWTXqHkz4gMV7QZBRATgucFmF2ywZDZD'
 #this is for page Page_thread_queue_test
 PAGE_ACCESS_TOKEN2 = 'EAAeeVSYcYQYBAOVAMY6T8t6htQMnJ3gGZBfq9H7VsvRaazNsqJ6FIfsIYK2GBAWRNrFzyB95BADbeZBZClDP6Vdf7Jp7gtpYIIur4oPZCBl4VXpAf3P4kjM8ldR3heOXbUZCFBzvk6rfB0iTPOlqhSKUySb8afVp8rLNnBMR1O0E71D1vfOlvAu3g0lvGRAkZD'
+PATs = {
+  "620697518375534": "EAAeeVSYcYQYBAHng9dsVAiRdvy1kKttTvWFkcmoU2fwUr44vnJXVQJfXzuZCL8FAUM9IqZCqlZBgaWMbRw6JQ09xlF9s130Syzt1trfbZCC1jxbM4IHtPqxVXRg6DB11rsDheteFCtLuXHqJWTXqHkz4gMV7QZBRATgucFmF2ywZDZD",
+  "2294459164144169": "EAAeeVSYcYQYBAOVAMY6T8t6htQMnJ3gGZBfq9H7VsvRaazNsqJ6FIfsIYK2GBAWRNrFzyB95BADbeZBZClDP6Vdf7Jp7gtpYIIur4oPZCBl4VXpAf3P4kjM8ldR3heOXbUZCFBzvk6rfB0iTPOlqhSKUySb8afVp8rLNnBMR1O0E71D1vfOlvAu3g0lvGRAkZD",
+  "107410281020965": "EAAEPUuhsrWoBAHxawN6gux95MsTYmTZCFIrv1EZCufcmcF69XFkZAckyJMZBi23We79Kca00kMY6WiVKb8qZBQewZCWW3M0waSScEHNZBIAaz1jIT2ureHD6RDnRuyV8h9ZB9L7ZC0gSikJw3k2EGvDgspZB4sbiZC6k2WeGoZBeWd2MNUD1RTuN0OjqnTUuiWQXq6AZD"
+}
 
-SEND_API_URL = 'https://graph.facebook.com/v2.12/me/messages?access_token=%s'\
-  % PAGE_ACCESS_TOKEN
-SEND_API_URL2 = 'https://graph.facebook.com/v2.12/me/messages?access_token=%s'\
-  % PAGE_ACCESS_TOKEN2
+SEND_API_URL = 'https://graph.facebook.com/v6.0/me/messages?access_token=%s'\
 
 PASS_THREAD_CONTROL_URL = 'https://graph.facebook.com/v2.12/me/pass_thread_control?access_token=%s'\
   % PAGE_ACCESS_TOKEN
@@ -73,7 +75,7 @@ def send_message_to_recipient(message_text, recipient_id, page_id):
       'text': message_text,
     },
   }
-  r = requests.post(SEND_API_URL if page_id == '620697518375534' else SEND_API_URL2, data=json.dumps(message), headers=HEADERS)
+  r = requests.post(SEND_API_URL%PATS[page_id], data=json.dumps(message), headers=HEADERS)
   if r.status_code != 200:
     print('== ERROR====')
     print(SEND_API_URL)
