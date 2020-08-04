@@ -44,7 +44,9 @@ def send_message(body):
           if 'message' in message: 
             webhook_type='message'
           elif 'postback' in message:
-            webhook_type='postback' 
+            webhook_type='postback'
+          elif 'reaction' in message:
+            webhook_type='reaction'
           else:
             return
           if 'text' in message[webhook_type]:
